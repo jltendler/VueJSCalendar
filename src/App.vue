@@ -14,20 +14,22 @@ const handleSaveEvent = (eventData) => {
 </script>
 
 <template>
-  <div class="app-layout">
-    <header class="main-header">
-      <div class="logo">
-        <span class="icon">⚡</span>
-        <h1>The Taskinator</h1>
+  <div class="flex flex-col h-screen bg-page overflow-hidden">
+    <header class="h-[60px] px-6 flex items-center border-b border-[#333] bg-surface z-10">
+      <div class="flex items-center gap-2">
+        <span class="text-2xl text-[#646cff]">⚡</span>
+        <h1 class="text-xl font-bold bg-gradient-to-r from-[#646cff] to-[#535bf2] bg-clip-text text-transparent m-0 tracking-tight">
+          The Taskinator
+        </h1>
       </div>
     </header>
 
-    <main class="content-wrapper">
-      <div class="calendar-section">
+    <main class="flex flex-1 overflow-hidden flex-col md:flex-row">
+      <div class="flex-1 p-6 overflow-y-auto flex justify-center">
         <CalendarLayout />
       </div>
       
-      <aside class="sidebar">
+      <aside class="w-full md:w-[320px] shrink-0 border-t md:border-t-0 md:border-l border-[#333] bg-surface h-[300px] md:h-auto">
         <EventList 
           :events="sortedEvents" 
           @open-modal="showModal = true"
@@ -35,7 +37,14 @@ const handleSaveEvent = (eventData) => {
       </aside>
     </main>
 
-    <Transition name="fade">
+    <Transition 
+      enter-active-class="transition-opacity duration-200 ease-out"
+      enter-from-class="opacity-0"
+      enter-to-class="opacity-100"
+      leave-active-class="transition-opacity duration-200 ease-in"
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
+    >
       <EventModal 
         v-if="showModal" 
         @close="showModal = false"
@@ -44,90 +53,3 @@ const handleSaveEvent = (eventData) => {
     </Transition>
   </div>
 </template>
-
-<style scoped>
-.app-layout {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  background-color: var(--bg-primary);
-  overflow: hidden;
-}
-
-.main-header {
-  height: 60px;
-  padding: 0 var(--spacing-lg);
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--border-color);
-  background-color: var(--bg-elevated);
-  z-index: 10;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-}
-
-.icon {
-  font-size: 1.5rem;
-  color: var(--accent-primary);
-}
-
-.main-header h1 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  margin: 0;
-  letter-spacing: -0.02em;
-}
-
-.content-wrapper {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-}
-
-.calendar-section {
-  flex: 1;
-  padding: var(--spacing-lg);
-  overflow-y: auto;
-  display: flex;
-  justify-content: center;
-}
-
-.sidebar {
-  width: 320px;
-  flex-shrink: 0;
-  border-left: 1px solid var(--border-color);
-  background-color: var(--bg-elevated);
-}
-
-/* Transitions */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-@media (max-width: 900px) {
-  .content-wrapper {
-    flex-direction: column;
-  }
-  
-  .sidebar {
-    width: 100%;
-    height: 300px; /* Fixed height for sidebar on mobile */
-    border-left: none;
-    border-top: 1px solid var(--border-color);
-  }
-}
-</style>

@@ -6,61 +6,33 @@ defineProps({
   }
 })
 
-const getEventColor = (type) => {
+const getEventClasses = (type) => {
   switch (type) {
-    case 'work': return 'var(--event-blue)'
-    case 'personal': return 'var(--event-green)'
-    case 'important': return 'var(--event-orange)'
-    case 'social': return 'var(--event-purple)'
-    default: return 'var(--text-secondary)'
+    case 'work': return 'bg-blue-500/15 border-blue-500 hover:bg-blue-500/30 text-blue-100'
+    case 'personal': return 'bg-green-500/15 border-green-500 hover:bg-green-500/30 text-green-100'
+    case 'important': return 'bg-orange-500/15 border-orange-500 hover:bg-orange-500/30 text-orange-100'
+    case 'social': return 'bg-purple-500/15 border-purple-500 hover:bg-purple-500/30 text-purple-100'
+    default: return 'bg-gray-500/15 border-gray-500 hover:bg-gray-500/30 text-gray-100'
+  }
+}
+
+const getDotColor = (type) => {
+    switch (type) {
+    case 'work': return 'bg-blue-500'
+    case 'personal': return 'bg-green-500'
+    case 'important': return 'bg-orange-500'
+    case 'social': return 'bg-purple-500'
+    default: return 'bg-gray-500'
   }
 }
 </script>
 
 <template>
   <div 
-    class="event-badge" 
-    :style="{ '--badge-color': getEventColor(event.type) }"
+    class="flex items-center gap-1 px-1.5 py-0.5 border-l-2 rounded-sm text-xs cursor-pointer truncate transition-all duration-150 hover:translate-x-px"
+    :class="getEventClasses(event.type)"
   >
-    <span class="dot"></span>
-    <span class="title">{{ event.title }}</span>
+    <span class="w-1.5 h-1.5 rounded-full shrink-0" :class="getDotColor(event.type)"></span>
+    <span class="truncate">{{ event.title }}</span>
   </div>
 </template>
-
-<style scoped>
-.event-badge {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 2px 6px;
-  background-color: color-mix(in srgb, var(--badge-color), transparent 85%);
-  border-left: 2px solid var(--badge-color);
-  border-radius: 2px;
-  font-size: 0.75rem;
-  color: var(--text-primary);
-  margin-bottom: 2px;
-  cursor: pointer;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: all var(--transition-fast);
-}
-
-.event-badge:hover {
-  background-color: color-mix(in srgb, var(--badge-color), transparent 70%);
-  transform: translateX(1px);
-}
-
-.dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--badge-color);
-  flex-shrink: 0;
-}
-
-.title {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-</style>

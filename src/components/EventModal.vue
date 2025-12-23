@@ -21,24 +21,39 @@ const handleSubmit = () => {
 </script>
 
 <template>
-  <div class="modal-backdrop" @click.self="$emit('close')">
-    <div class="modal-content">
-      <h2>Add New Task</h2>
+  <div class="fixed inset-0 w-screen h-screen bg-black/60 backdrop-blur-sm flex justify-center items-center z-50" @click.self="$emit('close')">
+    <div class="bg-surface p-8 rounded-xl w-full max-w-[400px] border border-[#333] shadow-2xl shadow-black/30">
+      <h2 class="mt-0 mb-6 text-2xl text-copy">Add New Task</h2>
       
       <form @submit.prevent="handleSubmit">
-        <div class="form-group">
-          <label>Task Title</label>
-          <input v-model="title" type="text" placeholder="e.g. Code Review" required autofocus />
+        <div class="mb-4 text-left">
+          <label class="block mb-1 text-dim text-sm">Task Title</label>
+          <input 
+            v-model="title" 
+            type="text" 
+            placeholder="e.g. Code Review" 
+            required 
+            autofocus 
+            class="w-full p-2.5 bg-page border border-[#333] rounded-lg text-copy text-base focus:outline-none focus:border-[#646cff]"
+          />
         </div>
 
-        <div class="form-group">
-          <label>Date</label>
-          <input v-model="date" type="date" required />
+        <div class="mb-4 text-left">
+          <label class="block mb-1 text-dim text-sm">Date</label>
+          <input 
+            v-model="date" 
+            type="date" 
+            required 
+            class="w-full p-2.5 bg-page border border-[#333] rounded-lg text-copy text-base focus:outline-none focus:border-[#646cff]"
+          />
         </div>
 
-        <div class="form-group">
-          <label>Type</label>
-          <select v-model="type">
+        <div class="mb-4 text-left">
+          <label class="block mb-1 text-dim text-sm">Type</label>
+          <select 
+            v-model="type"
+            class="w-full p-2.5 bg-page border border-[#333] rounded-lg text-copy text-base focus:outline-none focus:border-[#646cff]"
+          >
             <option value="work">Work</option>
             <option value="personal">Personal</option>
             <option value="important">Important</option>
@@ -46,98 +61,22 @@ const handleSubmit = () => {
           </select>
         </div>
 
-        <div class="modal-actions">
-          <button type="button" @click="$emit('close')" class="btn-cancel">Cancel</button>
-          <button type="submit" class="btn-save">Save Task</button>
+        <div class="flex justify-end gap-4 mt-8">
+          <button 
+            type="button" 
+            @click="$emit('close')" 
+            class="bg-transparent border border-[#333] text-dim py-2 px-4 rounded-lg transition-colors duration-150 hover:border-copy hover:text-copy"
+          >
+            Cancel
+          </button>
+          <button 
+            type="submit" 
+            class="bg-[#646cff] text-white py-2 px-4 rounded-lg transition-colors duration-150 hover:bg-[#535bf2]"
+          >
+            Save Task
+          </button>
         </div>
       </form>
     </div>
   </div>
 </template>
-
-<style scoped>
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background-color: var(--bg-elevated);
-  padding: var(--spacing-xl);
-  border-radius: var(--radius-lg);
-  width: 100%;
-  max-width: 400px;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-}
-
-h2 {
-  margin-top: 0;
-  margin-bottom: var(--spacing-lg);
-  color: var(--text-primary);
-}
-
-.form-group {
-  margin-bottom: var(--spacing-md);
-  text-align: left;
-}
-
-label {
-  display: block;
-  margin-bottom: var(--spacing-xs);
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-}
-
-input, select {
-  width: 100%;
-  padding: 10px;
-  background-color: var(--bg-primary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  color: var(--text-primary);
-  font-family: inherit;
-  font-size: 1rem;
-}
-
-input:focus, select:focus {
-  outline: none;
-  border-color: var(--accent-primary);
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-lg);
-}
-
-.btn-cancel {
-  background: transparent;
-  border: 1px solid var(--border-color);
-  color: var(--text-secondary);
-}
-
-.btn-cancel:hover {
-  border-color: var(--text-primary);
-  color: var(--text-primary);
-}
-
-.btn-save {
-  background-color: var(--accent-primary);
-  color: white;
-}
-
-.btn-save:hover {
-  background-color: var(--accent-secondary);
-}
-</style>

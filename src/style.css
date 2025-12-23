@@ -1,105 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  /* Colors - Premium Dark Theme */
-  --bg-primary: #121212;
-  --bg-secondary: #1a1a1a;
-  --bg-elevated: #242424;
-  --bg-glass: rgba(30, 30, 30, 0.6);
-
-  --text-primary: #ededed;
-  --text-secondary: #a0a0a0;
-  --text-muted: #666666;
-
-  --accent-primary: #646cff;
-  /* Vite Blue-ish */
-  --accent-glow: rgba(100, 108, 255, 0.5);
-  --accent-secondary: #535bf2;
-
-  --border-color: #333333;
-  --border-hover: #4a4a4a;
-
-  /* Events Colors */
+  /* Retaining variable for dynamic event colors if needed, or we can move them to inline styles */
   --event-blue: #3b82f6;
   --event-green: #10b981;
   --event-purple: #8b5cf6;
   --event-orange: #f59e0b;
-
-  /* Spacing */
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-
-  /* Typography */
-  --font-main: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-full: 9999px;
-
-  /* Transitions */
-  --transition-fast: 0.15s ease;
-  --transition-normal: 0.3s ease;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  --text-secondary: #a0a0a0;
 }
 
 body {
-  font-family: var(--font-main);
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  line-height: 1.5;
-  width: 100vw;
-  min-height: 100vh;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  @apply antialiased;
+  background-color: #121212;
+  color: #ededed;
 }
 
-#app {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Scrollbar styling */
+/* Custom Scrollbar to match previous design */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background-color: #121212;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #444;
-  border-radius: 4px;
+  @apply bg-[#444] rounded;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-a {
-  color: var(--accent-primary);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-a:hover {
-  color: var(--accent-secondary);
-}
-
-button {
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
-  background: none;
-  color: inherit;
+  @apply bg-[#555];
 }

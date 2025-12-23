@@ -17,7 +17,7 @@ const { events } = useEvents()
 </script>
 
 <template>
-  <div class="calendar-layout">
+  <div class="w-full max-w-[1000px] bg-panel rounded-2xl p-6 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)] border border-white/5 md:p-4">
     <CalendarHeader 
       :currentMonthYear="currentMonthYear"
       @next="navigateNext"
@@ -32,24 +32,3 @@ const { events } = useEvents()
     />
   </div>
 </template>
-
-<style scoped>
-.calendar-layout {
-  width: 100%;
-  max-width: 1000px;
-  background-color: var(--bg-secondary);
-  border-radius: var(--radius-xl);
-  padding: var(--spacing-lg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-/* Responsiveness */
-@media (max-width: 768px) {
-  .calendar-layout {
-    padding: var(--spacing-md);
-  }
-}
-</style>

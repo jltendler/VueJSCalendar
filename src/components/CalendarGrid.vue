@@ -18,19 +18,19 @@ defineProps({
 </script>
 
 <template>
-  <div class="calendar-grid">
-    <div class="weekdays-row">
+  <div class="flex flex-col rounded-xl overflow-hidden border border-[#333]">
+    <div class="grid grid-cols-7 bg-surface border-b border-[#333]">
       <div 
         v-for="day in weekDays" 
         :key="day" 
-        class="weekday-header"
+        class="p-2 text-center font-medium text-dim text-sm tracking-wide uppercase"
       >
         {{ day }}
       </div>
     </div>
 
-    <div class="days-grid">
-      <DayCell 
+    <div class="grid grid-cols-7 bg-page gap-[1px]">
+      <DayCell  
         v-for="dayObj in days" 
         :key="dayObj.key" 
         :day="dayObj"
@@ -39,38 +39,3 @@ defineProps({
     </div>
   </div>
 </template>
-
-<style scoped>
-.calendar-grid {
-  display: flex;
-  flex-direction: column;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-}
-
-.weekdays-row {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  background-color: var(--bg-elevated);
-  border-bottom: 1px solid var(--border-color);
-}
-
-.weekday-header {
-  padding: 10px;
-  text-align: center;
-  font-weight: 500;
-  color: var(--text-secondary);
-  font-size: 0.875rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.days-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  /* Use auto-fill rows but min height is handled in DayCell */
-  background-color: var(--bg-primary); 
-  gap: 1px; /* Creates grid lines if background is contrasting, but we use borders in cells */
-}
-</style>

@@ -18,17 +18,22 @@ const dayEvents = props.events.filter(e => isSameDay(e.date, props.day.date))
 
 <template>
   <div 
-    class="day-cell" 
+    class="min-h-[100px] p-1 flex flex-col relative transition-colors duration-150 border border-[#333] bg-surface hover:bg-[#2a2a2a]"
     :class="{ 
-      'is-today': day.isToday,
-      'not-current-month': !day.isCurrentMonth
+      'bg-accent-primary/10 border-accent-primary': day.isToday,
+      'bg-page opacity-50': !day.isCurrentMonth
     }"
   >
-    <div class="day-header">
-      <span class="day-number">{{ day.date.getDate() }}</span>
+    <div class="flex justify-end mb-1">
+      <span 
+        class="text-sm p-0.5"
+        :class="{ 'bg-accent-primary text-white w-6 h-6 flex items-center justify-center rounded-full font-bold': day.isToday, 'text-copy': !day.isToday && day.isCurrentMonth, 'text-dim': !day.isCurrentMonth }"
+      >
+        {{ day.date.getDate() }}
+      </span>
     </div>
     
-    <div class="events-container">
+    <div class="flex flex-col gap-[2px] grow overflow-y-auto">
       <EventBadge 
         v-for="event in dayEvents" 
         :key="event.id" 
@@ -37,66 +42,3 @@ const dayEvents = props.events.filter(e => isSameDay(e.date, props.day.date))
     </div>
   </div>
 </template>
-
-<style scoped>
-.day-cell {
-  background-color: var(--bg-elevated);
-  border: 1px solid var(--border-color);
-  min-height: 100px;
-  padding: 4px;
-  display: flex;
-  flex-direction: column;
-  transition: background-color var(--transition-fast);
-  position: relative;
-}
-
-.day-cell:hover {
-  background-color: color-mix(in srgb, var(--bg-elevated), white 2%);
-}
-
-.not-current-month {
-  background-color: var(--bg-primary);
-  opacity: 0.5;
-}
-
-.not-current-month .day-number {
-  color: var(--text-secondary);
-}
-
-.is-today {
-  background-color: color-mix(in srgb, var(--accent-primary), transparent 90%);
-  border-color: var(--accent-primary);
-}
-
-.is-today .day-number {
-  background-color: var(--accent-primary);
-  color: white;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  font-weight: bold;
-}
-
-.day-header {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 4px;
-}
-
-.day-number {
-  font-size: 0.875rem;
-  color: var(--text-primary);
-  padding: 2px;
-}
-
-.events-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  flex-grow: 1;
-  overflow-y: auto;
-}
-</style>
