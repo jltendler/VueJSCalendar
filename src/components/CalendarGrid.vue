@@ -15,6 +15,8 @@ defineProps({
     default: () => []
   }
 })
+
+defineEmits(['add-event'])
 </script>
 
 <template>
@@ -35,6 +37,7 @@ defineProps({
         :key="dayObj.key" 
         :day="dayObj"
         :events="events"
+        @add-event="(date) => $emit('add-event', date)"
       />
     </div>
   </div>

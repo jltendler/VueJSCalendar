@@ -1,41 +1,41 @@
-import { ref, computed } from 'vue'
-import { 
-  startOfMonth, 
-  endOfMonth, 
-  startOfWeek, 
-  endOfWeek, 
-  eachDayOfInterval, 
-  addMonths, 
+import { ref, computed } from 'vue';
+import {
+  startOfMonth,
+  endOfMonth,
+  startOfWeek,
+  endOfWeek,
+  eachDayOfInterval,
+  addMonths,
   subMonths,
   format,
   isSameMonth,
   isToday,
   isSameDay
-} from 'date-fns'
+} from 'date-fns';
 
 export function useCalendar() {
-  const currentDate = ref(new Date())
+  const currentDate = ref(new Date());
 
   const navigateNext = () => {
-    currentDate.value = addMonths(currentDate.value, 1)
+    currentDate.value = addMonths(currentDate.value, 1);
   }
 
   const navigatePrev = () => {
-    currentDate.value = subMonths(currentDate.value, 1)
+    currentDate.value = subMonths(currentDate.value, 1);
   }
 
   const navigateToday = () => {
-    currentDate.value = new Date()
+    currentDate.value = new Date();
   }
 
   const currentMonthYear = computed(() => {
-    return format(currentDate.value, 'MMMM yyyy')
+    return format(currentDate.value, 'MMMM yyyy');
   })
 
   const daysInGrid = computed(() => {
-    const start = startOfWeek(startOfMonth(currentDate.value))
-    const end = endOfWeek(endOfMonth(currentDate.value))
-    
+    const start = startOfWeek(startOfMonth(currentDate.value));
+    const end = endOfWeek(endOfMonth(currentDate.value));
+
     return eachDayOfInterval({ start, end }).map(date => {
       return {
         date,
@@ -46,7 +46,7 @@ export function useCalendar() {
     })
   })
 
-  const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   return {
     currentDate,
@@ -57,5 +57,5 @@ export function useCalendar() {
     daysInGrid,
     weekDays,
     isSameDay
-  }
+  };
 }

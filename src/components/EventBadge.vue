@@ -8,6 +8,7 @@ defineProps({
 
 const getEventClasses = (type) => {
   switch (type) {
+    //could have been done directly in-line, but this is much easier to reuse
     case 'work': return 'bg-blue-500/15 border-blue-500 hover:bg-blue-500/30 text-blue-100'
     case 'personal': return 'bg-green-500/15 border-green-500 hover:bg-green-500/30 text-green-100'
     case 'important': return 'bg-orange-500/15 border-orange-500 hover:bg-orange-500/30 text-orange-100'
@@ -18,11 +19,11 @@ const getEventClasses = (type) => {
 
 const getDotColor = (type) => {
     switch (type) {
-    case 'work': return 'bg-blue-500'
-    case 'personal': return 'bg-green-500'
-    case 'important': return 'bg-orange-500'
-    case 'social': return 'bg-purple-500'
-    default: return 'bg-gray-500'
+    case 'work': return 'bg-blue-500';
+    case 'personal': return 'bg-green-500';
+    case 'important': return 'bg-orange-500';
+    case 'social': return 'bg-purple-500';
+    default: return 'bg-gray-500';
   }
 }
 </script>

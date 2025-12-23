@@ -11,14 +11,14 @@ export default {
             },
             colors: {
                 // Backgrounds
-                page: '#121212',      // previously bg-primary
-                panel: '#1a1a1a',     // previously bg-secondary
-                surface: '#242424',   // previously bg-elevated
+                page: '#121212',
+                panel: '#1a1a1a',
+                surface: '#242424',
 
                 // Text
-                copy: '#ededed',      // previously text-primary
-                dim: '#a0a0a0',       // previously text-secondary
-                mute: '#666666',      // previously text-muted
+                plain: '#ededed',
+                dim: '#a0a0a0',
+                mute: '#666666',
             }
         },
     },
