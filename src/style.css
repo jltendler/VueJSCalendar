@@ -1,27 +1,28 @@
 :root {
   /* Colors - Premium Dark Theme */
   --bg-primary: #121212;
-  --bg-secondary: #fffa;
+  --bg-secondary: #1a1a1a;
   --bg-elevated: #242424;
   --bg-glass: rgba(30, 30, 30, 0.6);
-  
+
   --text-primary: #ededed;
   --text-secondary: #a0a0a0;
   --text-muted: #666666;
 
-  --accent-primary: #646cff; /* Vite Blue-ish */
+  --accent-primary: #646cff;
+  /* Vite Blue-ish */
   --accent-glow: rgba(100, 108, 255, 0.5);
   --accent-secondary: #535bf2;
 
   --border-color: #333333;
   --border-hover: #4a4a4a;
-  
+
   /* Events Colors */
   --event-blue: #3b82f6;
   --event-green: #10b981;
   --event-purple: #8b5cf6;
   --event-orange: #f59e0b;
-  
+
   /* Spacing */
   --spacing-xs: 4px;
   --spacing-sm: 8px;
@@ -35,7 +36,7 @@
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-full: 9999px;
-  
+
   /* Transitions */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.3s ease;
@@ -71,15 +72,18 @@ body {
   width: 8px;
   height: 8px;
 }
+
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary); 
+  background: var(--bg-primary);
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #444; 
+  background: #444;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
 a {

@@ -38,12 +38,18 @@ export function useEvents() {
     const addEvent = (event) => {
         events.value.push({
             ...event,
-            id: Date.now()
+            id: Date.now(),
+            date: new Date(event.date)
         })
     }
 
+    const sortedEvents = computed(() => {
+        return [...events.value].sort((a, b) => new Date(a.date) - new Date(b.date))
+    })
+
     return {
         events,
+        sortedEvents,
         getEventsForDate,
         addEvent
     }

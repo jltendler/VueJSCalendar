@@ -53,9 +53,10 @@ h1 {
 
 .today-btn {
   border: 1px solid var(--border-color);
+  background-color: var(--bg-elevated);
   padding: 4px 12px;
   border-radius: var(--radius-md);
-  color: var(--text-secondary);
+  color: var(--text-primary);
   transition: all var(--transition-fast);
 }
 
